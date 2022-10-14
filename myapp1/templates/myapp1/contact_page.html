@@ -1,0 +1,110 @@
+{% extends 'myapp1/base.html' %}
+
+{% block title %} 
+{{ name_clients}}
+{% endblock %}
+
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.1/vue.js"></script>
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
+{% endblock %}
+
+{% block search %}
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" href="#">Пошук</a>
+    </div>
+  </div> -->
+{% endblock%}
+
+{% block document %} 
+    <div class="col-md-1">
+      <!-- <label for="zip" class="form-label"> Дата подачі справи</label> -->
+      <input type="text" class="form-control" id="zip" placeholder="№ Договору" required="">
+      <div class="invalid-feedback">
+        Ви не вибрали параметри для пошуку
+      </div>
+    </div>  
+            
+    <!-- <div class="container">   -->
+      <div class="col-md-1.7">
+        <!-- <label  class="form-label"></label> -->
+        <select class="form-select" id="country" required="">
+          <option value="">Тип справи</option>
+          <option>Процесуальна</option>
+          <option>Кримінальна</option>
+          <option>Адміністративна</option> 
+        </select>
+        <div class="invalid-feedback">
+          Please select a valid country.
+        </div>
+      </div>
+
+      
+
+      <div class="col-md-3">
+        <!-- <label for="state" class="form-label"></label> -->
+        <select class="form-select" id="state" required="">
+          <option value=""> Статус справи</option>
+          <option>Підготовка документів</option>
+          <option>Справа перебуває на розгляді суду</option>
+          <option>Справа закрита</option>
+        </select>
+        <div class="invalid-feedback">
+          Please provide a valid state.
+        </div>
+      </div>
+
+     
+      <div class="col-md-2">
+        <!-- <label for="zip" class="form-label"> Дата подачі справи</label> -->
+        <input type="text" class="form-control" id="zip" placeholder="Дата подачі справи" required="">
+        <div class="invalid-feedback">
+          Ви не вибрали параметри для пошуку
+        </div>
+      </div>
+      
+      <div class="col-md-2">
+        <!-- <label for="zip" class="form-label"> Д</label> -->
+        <input type="text" class="form-control" id="zip" placeholder="Дата договору" required="">
+        <div class="invalid-feedback">
+          Ви не вибрали параметри для пошуку
+        </div>
+      </div>
+
+
+
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <button type="button" class="btn btn-success" id="filter_button" v-on:click="filter()"> Фільтрувати </button>
+      </div>
+    <!-- </div>       -->
+
+    
+          {% endblock %}
+{% block baza %} 
+          
+{% verbatim %}
+<div class="container" id="contact_new">
+ 
+   
+  <div class="alert alert-warning mt-2" v-for="el in Client">
+    <h2> {{ el.name_client }}</h2>
+    <p> {{  el.type_case }}</p>
+    <p> {{  el.contract_number }}</p>
+    <p> {{  el.date_contract }}</p>
+    <p> {{  el.date }}</p>
+    <p> {{  el.documents_case }}</p>
+    <p> {{  el.status_case }}</p>
+
+  </div>
+</div>
+{% endverbatim %}
+
+<script src="static/js/app.js"></script>
+{% endblock %}
+
+
