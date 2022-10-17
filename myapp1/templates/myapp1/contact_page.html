@@ -48,11 +48,10 @@
 
       <div class="col-md-2">
         <!-- <label for="state" class="form-label"></label> -->
-        <select class="form-select" id="state" required="" >
-          <option value=""> Статус справи</option>
-          <option>Підготовка документів</option>
-          <option>Справа перебуває на розгляді суду</option>
-          <option>Справа закрита</option>
+        <select class="form-select" id="status_case_select"  v-model="select">
+          <option v-for="it in case_status" :value="it.id" :key="it.id">
+            {{ it.NameStatusCase }}
+          </option>
         </select>
         <div class="invalid-feedback">
           Please provide a valid state.

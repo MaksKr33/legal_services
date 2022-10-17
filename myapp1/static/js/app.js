@@ -77,7 +77,7 @@ var filter_button = new Vue({
 var type_dropdown = new Vue({
     el: "#type_case_select",
     data: {
-      case_types: [{"id": 0, "NameTypeCase": "Виберіть тип справи..."}],
+      case_types: [{"id": 0, "NameTypeCase": "Тип справи"}],
       selected: 0
     },
     created: function() {
@@ -86,19 +86,21 @@ var type_dropdown = new Vue({
           vm.case_types.push(...response.data);
       }) 
     }
+});
+
+
+var status_dropdown = new Vue({
+  el: "#status_case_select",
+  data: {
+    case_status: [{"id": 0, "NameStatusCase": "Cтатус справи"}],
+    select: 0
+  },
+  created: function() {
+      const vm = this;
+      axios.get('statuscase').then(function(response) {
+        vm.case_status.push(...response.data);
+    }) 
+  }
 })
 
 
-var filter_button = new Vue({
-  el: '#filter_button',
-  methods: {
-    filter: function () {
-      const vm = user_list;
-      const api_type ='client/?type_case=';
-      axios.get(api_type + selected_case)
-      .then( function(response) {
-      vm.Client = response.data
-      }) 
-    }
-  }
-});
