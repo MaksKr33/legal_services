@@ -5,4 +5,4 @@ class TypeCaseSeriaLizer(ModelSerializer):
     
     class Meta:
         model = TypeCase
-        fields = ['NameTypeCase','id']
+        fields = ['id','NameTypeCase']

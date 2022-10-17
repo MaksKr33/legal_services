@@ -26,13 +26,33 @@ var search_button = new Vue({
       }) 
     }
   }
-});var filter_button = new Vue({
+});
+
+var filter_button = new Vue({
     el: '#filter_button',
     methods: {
       filter: function () {
         const vm = user_list;
-        const type_value = type_dropdown;
-        axios.get('client/?type_case=2')
+        const api_type ='client/?type_case=';
+        // const filter_fieds = [
+        //   {
+        //     "filter_key": "type_case",
+        //     "filter_value": type_dropdown.selected
+        //   },
+        //   {
+        //     "filter_key": "status_case",
+        //     "filter_value": status_dropdown.selected
+        //   }
+        // ];
+        const selected_case = type_dropdown.selected;
+
+        // var request_url = "";
+        // for value in filter_fieds:
+        //   if value is not None:
+        //   request_url = request_url + "&" + value["filter_key"] + "=" + value["filter_value"]
+
+        //   request_url = "type_case=1&status_case=1"
+        axios.get(api_type + selected_case)
         .then( function(response) {
         vm.Client = response.data
         }) 
@@ -40,19 +60,16 @@ var search_button = new Vue({
     }
 });
 
-
-
 var type_dropdown = new Vue({
     el: "#type_case_select",
     data: {
-        selected_value:[]
-      },
-      created: function() {
-          const vm = this;
-          axios.get('typecase')
-          .then(function(response){
-          vm.selected_value =response.data
-          }) 
-      }
+      case_types: [{"id": 0, "NameTypeCase": "Виберіть тип справи..."}],
+      selected: 0
     },
-)
+    created: function() {
+        const vm = this;
+        axios.get('typecase').then(function(response) {
+          vm.case_types.push(...response.data);
+      }) 
+    }
+})

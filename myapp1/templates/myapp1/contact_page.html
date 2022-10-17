@@ -13,7 +13,7 @@
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"  data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation" >
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search_now" id="Search_now" >
+  <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search" id="Search_now" >
   <div class="navbar-nav">
     <div class="nav-item text-nowrap" id="SearchButton" v-on:click="search_button()">
       <a class="nav-link px-3" href="#">Пошук</a>
@@ -34,11 +34,10 @@
     <!-- <div class="container">   -->
       <div class="col-md-1.7">
         <!-- <label  class="form-label"></label> -->
-        <select class="form-select" id="type_case_select" required="", v-for="element in selected_value">
-          <option value="">Тип справи</option>
-          <option>{{ element.Кримінальна }}</option>
-          <option>{{ element.Кримінальна }}</option>
-          <option>Адміністративна</option> 
+        <select class="form-select" id="type_case_select" v-model="selected">
+          <option v-for="item in case_types" :value="item.id" :key="item.id">
+            {{ item.NameTypeCase }}
+          </option>
         </select>
         <div class="invalid-feedback">
           Please select a valid country.

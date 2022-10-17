@@ -4,7 +4,7 @@ from .models import Baza_client , TypeCase
 from .forms import Baza_client_Form
 from rest_framework.viewsets import ModelViewSet
 from .serializers import OrderSeriaLizer
-from .search_serializers import TypeCaseSeriaLizer
+from .select_serializers import TypeCaseSeriaLizer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 # from django.views.generic.base import View
