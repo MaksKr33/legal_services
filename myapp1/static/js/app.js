@@ -28,6 +28,19 @@ var search_button = new Vue({
   }
 });
 
+
+const txtSearchEl = document.getElementById('Search_now')
+const btnSearchEl = document.getElementById('SearchButton')
+txtSearchEl.addEventListener('keydown', (event) => {
+  if (event.key === "Enter") {
+    btnSearchEl.click()
+  }
+})
+btnSearchEl.addEventListener('click', () => {
+  console.log('search button clicked')
+})
+
+
 var filter_button = new Vue({
     el: '#filter_button',
     methods: {
@@ -60,6 +73,7 @@ var filter_button = new Vue({
     }
 });
 
+
 var type_dropdown = new Vue({
     el: "#type_case_select",
     data: {
@@ -73,3 +87,18 @@ var type_dropdown = new Vue({
       }) 
     }
 })
+
+
+var filter_button = new Vue({
+  el: '#filter_button',
+  methods: {
+    filter: function () {
+      const vm = user_list;
+      const api_type ='client/?type_case=';
+      axios.get(api_type + selected_case)
+      .then( function(response) {
+      vm.Client = response.data
+      }) 
+    }
+  }
+});

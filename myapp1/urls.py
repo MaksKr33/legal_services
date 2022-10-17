@@ -1,11 +1,12 @@
 from django.urls import path
-from myapp1.views import OrederViews,TypeViews,  contact_new, new_client ,  base 
+from myapp1.views import OrederViews,TypeViews, StatusViews, contact_new, new_client, base 
 
 from rest_framework.routers import SimpleRouter
 
 router = SimpleRouter()
 router.register('client',  OrederViews)
 router.register('typecase',  TypeViews)
+router.register('statuscase', StatusViews )
 
 urlpatterns = [
         path('', base, name= 'home'),

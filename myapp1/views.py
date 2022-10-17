@@ -1,10 +1,11 @@
 # from warnings import filters
 from django.shortcuts import render, redirect
-from .models import Baza_client , TypeCase
+from .models import Baza_client, StatusCase , TypeCase
 from .forms import Baza_client_Form
 from rest_framework.viewsets import ModelViewSet
 from .serializers import OrderSeriaLizer
-from .select_serializers import TypeCaseSeriaLizer
+from .type_case_serializers import TypeCaseSeriaLizer
+from . status_case_serializers import StatusCaseSeriaLizer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 # from django.views.generic.base import View
@@ -47,6 +48,11 @@ class OrederViews(ModelViewSet):
 class TypeViews(ModelViewSet):
     queryset = TypeCase.objects.all()
     serializer_class = TypeCaseSeriaLizer
+
+
+class StatusViews (ModelViewSet):
+    queryset = StatusCase.objects.all()
+    serializer_class =  StatusCaseSeriaLizer
     
     
    
