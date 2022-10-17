@@ -38,7 +38,8 @@ class Baza_client_Form (forms.ModelForm):
                      'placeholder' : 'Дата подачі справи'  }),
 
                      'status_case' :  Select( attrs={
-                     'class' : 'selected'
+                    'class' : 'form-select',
+                     'value':   'Тип справи'
                      } ),
 
                      'documents_case' :FileInput(attrs={

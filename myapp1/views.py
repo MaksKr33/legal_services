@@ -1,11 +1,13 @@
+# from warnings import filters
 from django.shortcuts import render, redirect
 from .models import Baza_client , TypeCase
 from .forms import Baza_client_Form
 from rest_framework.viewsets import ModelViewSet
 from .serializers import OrderSeriaLizer
+from .search_serializers import TypeCaseSeriaLizer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
-from django.views.generic.base import View
+# from django.views.generic.base import View
 
 def base(request):
     return render(request,'myapp1/base.html')
@@ -33,23 +35,19 @@ def new_client(request):
 def contact_new(request):
     return render(request,'myapp1/contact_page.html')
 
-class Filter_type_case : 
-    def filter_type(self):
-        return TypeCase.objects.all()      
 
 class OrederViews(ModelViewSet):
     queryset = Baza_client.objects.all()
     serializer_class = OrderSeriaLizer
-    filter_backends= [DjangoFilterBackend, SearchFilter,  OrderingFilter]
+    filter_backends= [DjangoFilterBackend, OrderingFilter , SearchFilter]
     filterset_fields = ['type_case']
-    search_fields = ['name_client', 'contract_number', 'date_contract', 'type_case', 'date', 'status_case', 'documents_case']
     ordering_fields = ['name_client', 'contract_number']
-    
+    search_fields = ['name_client', 'contract_number'] 
 
- 
-# class Filter_type_case(ModelViewSet):
-#     queryset = Baza_client.objects.all()
-    # serializer_class = OrderSeriaLizer
-    # filter_backends= [DjangoFilterBackend, SearchFilter]
-    # filterset_fields = ['type_case']
+class TypeViews(ModelViewSet):
+    queryset = TypeCase.objects.all()
+    serializer_class = TypeCaseSeriaLizer
+    
+    
+   
  

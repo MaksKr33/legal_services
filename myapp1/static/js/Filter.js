@@ -1,13 +1,13 @@
 new Vue({
-    el: '#Filter_new',
+    el: '#Search',
     data: {
-    FilterClient:[]
+   SearchClient:[]
     },
     created: function() {
         const vm = this;
         axios.get('Filter')
         .then(function(response){
-        vm.FilterClient =response.data
+        vm.SearchClient =response.data
         }) 
     }
 }

@@ -10,18 +10,19 @@
 {% endblock %}
 
 {% block search %}
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"  data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation" >
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+  <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search_now" id="Search_now" >
   <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
+    <div class="nav-item text-nowrap" id="SearchButton" v-on:click="search_button()">
       <a class="nav-link px-3" href="#">Пошук</a>
     </div>
   </div> -->
 {% endblock%}
 
 {% block document %} 
+{% verbatim %}
     <div class="col-md-1">
       <!-- <label for="zip" class="form-label"> Дата подачі справи</label> -->
       <input type="text" class="form-control" id="zip" placeholder="№ Договору" required="">
@@ -33,10 +34,10 @@
     <!-- <div class="container">   -->
       <div class="col-md-1.7">
         <!-- <label  class="form-label"></label> -->
-        <select class="form-select" id="country" required="">
+        <select class="form-select" id="type_case_select" required="", v-for="element in selected_value">
           <option value="">Тип справи</option>
-          <option>Процесуальна</option>
-          <option>Кримінальна</option>
+          <option>{{ element.Кримінальна }}</option>
+          <option>{{ element.Кримінальна }}</option>
           <option>Адміністративна</option> 
         </select>
         <div class="invalid-feedback">
@@ -48,7 +49,7 @@
 
       <div class="col-md-3">
         <!-- <label for="state" class="form-label"></label> -->
-        <select class="form-select" id="state" required="">
+        <select class="form-select" id="state" required="" >
           <option value=""> Статус справи</option>
           <option>Підготовка документів</option>
           <option>Справа перебуває на розгляді суду</option>
@@ -82,7 +83,7 @@
         <button type="button" class="btn btn-success" id="filter_button" v-on:click="filter()"> Фільтрувати </button>
       </div>
     <!-- </div>       -->
-
+    {% endverbatim %}
     
           {% endblock %}
 {% block baza %} 
