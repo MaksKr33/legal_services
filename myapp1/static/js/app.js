@@ -1,15 +1,18 @@
+
 var user_list = new Vue({
     el: '#contact_new',
     data: {
         Client: []
     },
-    created: function() {
+    
+    created: function data_client() {
         const vm = this;
         axios.get('client')
-        .then(function(response){
-        vm.Client =response.data
-        }) 
-    }
+        .then( function(response) {
+        vm.Client = response.data
+          }) 
+      }
+    
 });
 
 
@@ -47,6 +50,8 @@ var filter_button = new Vue({
       filter: function () {
         const vm = user_list;
         const api_type ='client/?type_case=';
+        const data_value = document.getElementById("date").value;
+        const date_contract_value = document.getElementById("date_contract").value;
         // const filter_fieds = [
         //   {
         //     "filter_key": "type_case",
@@ -104,3 +109,17 @@ var status_dropdown = new Vue({
 })
 
 
+var search_button = new Vue({
+  el: '#SearchButton',
+  methods: {
+    search_button: function () {
+      const vm = user_list;
+      const search_value = document.getElementById("Search_now").value;
+      const api_search = 'client/?search=';
+      axios.get(api_search + search_value)
+      .then( function(response) {
+      vm.Client = response.data
+      }) 
+    }
+  }
+});

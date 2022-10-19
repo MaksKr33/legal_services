@@ -7,13 +7,14 @@
 {% block js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.1/vue.js"></script>
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 {% endblock %}
 
 {% block search %}
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"  data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation" >
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search" id="Search_now" >
+  <input class="form-control form-control-dark w-60 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search" id="Search_now" >
   <div class="navbar-nav">
     <div class="nav-item text-nowrap" id="SearchButton" v-on:click="search_button()">
       <a class="nav-link px-3" href="#">Пошук</a>
@@ -23,84 +24,71 @@
 
 {% block document %} 
 {% verbatim %}
-    <div class="col-md-2">
-      <!-- <label for="zip" class="form-label"> Дата подачі справи</label> -->
-      <input type="text" class="form-control" id="zip" placeholder="№ Договору" required="">
-      <div class="invalid-feedback">
-        Ви не вибрали параметри для пошуку
-      </div>
-    </div>  
-            
-    <!-- <div class="container">   -->
+           
       <div class="col-md-1.7">
-        <!-- <label  class="form-label"></label> -->
         <select class="form-select" id="type_case_select" v-model="selected">
           <option v-for="item in case_types" :value="item.id" :key="item.id">
             {{ item.NameTypeCase }}
           </option>
         </select>
-        <div class="invalid-feedback">
-          Please select a valid country.
-        </div>
-      </div>
+       
 
-      
-
-      <div class="col-md-2">
-        <!-- <label for="state" class="form-label"></label> -->
+      <div class="col-md-3">
         <select class="form-select" id="status_case_select"  v-model="select">
           <option v-for="it in case_status" :value="it.id" :key="it.id">
             {{ it.NameStatusCase }}
           </option>
         </select>
-        <div class="invalid-feedback">
-          Please provide a valid state.
-        </div>
-      </div>
 
      
       <div class="col-md-2">
-        <!-- <label for="zip" class="form-label"> Дата подачі справи</label> -->
-        <input type="text" class="form-control" id="zip" placeholder="Дата подачі справи" required="">
-        <div class="invalid-feedback">
-          Ви не вибрали параметри для пошуку
-        </div>
-      </div>
+        <input type="date" class="form-control" id="date" placeholder="Дата подачі справи" required="">
+      
       
       <div class="col-md-2">
-        <!-- <label for="zip" class="form-label"> Д</label> -->
-        <input type="text" class="form-control" id="zip" placeholder="Дата договору" required="">
-        <div class="invalid-feedback">
-          Ви не вибрали параметри для пошуку
-        </div>
-      </div>
-
-
+        <input type="text" class="form-control" id="date_contract" placeholder="Дата договору" required="">
+       
 
       <div class="btn-toolbar mb-2 mb-md-0">
         <button type="button" class="btn btn-success" id="filter_button" v-on:click="filter()"> Фільтрувати </button>
       </div>
-    <!-- </div>       -->
+
     {% endverbatim %}
-    
           {% endblock %}
+
 {% block baza %} 
           
 {% verbatim %}
-<div class="container" id="contact_new">
- 
-   
-  <div class="alert alert-warning mt-2" v-for="el in Client">
-    <h2> {{ el.name_client }}</h2>
-    <p> {{  el.type_case }}</p>
-    <p> {{  el.contract_number }}</p>
-    <p> {{  el.date_contract }}</p>
-    <p> {{  el.date }}</p>
-    <p> {{  el.documents_case }}</p>
-    <p> {{  el.status_case }}</p>
 
-  </div>
+
+<div class="table-responsive" id="contact_new">
+  <table class="table table-striped" >
+    
+      <tr>
+        <th scope="col">ПІБ Клієнта</th>
+        <th scope="col">Номер договору</th>
+        <th scope="col">Дата складання договору</th>
+        <th scope="col">Тип справи</th>
+        <th scope="col">Дата подачі справи</th>
+        <th scope="col">Статус справи</th>
+        <th scope="col">Документи по справі</th>
+      </tr>
+   
+        <tbody>
+          <tr v-for="el in Client"  :value="el.id">
+            <td>{{ el.name_client }}</td>
+            <td>{{ el.contract_number }}</td>
+            <td>{{ el.date }}</td>
+            <td>{{ el.type_case }}</td>
+            <td>{{ el.date }}</td>
+            <td>{{ el.status_case }}</td>
+            <td>{{ el.documents_case }}</td>
+      </tr> 
+        </tr> 
+        </tbody>
+  </table>
 </div>
+
 {% endverbatim %}
 
 <script src="static/js/app.js"></script>

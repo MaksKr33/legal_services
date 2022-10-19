@@ -41,7 +41,7 @@ class OrederViews(ModelViewSet):
     queryset = Baza_client.objects.all()
     serializer_class = OrderSeriaLizer
     filter_backends= [DjangoFilterBackend, OrderingFilter , SearchFilter]
-    filterset_fields = ['type_case']
+    filterset_fields = ['type_case', 'date', 'status_case', 'date_contract']
     ordering_fields = ['name_client', 'contract_number']
     search_fields = ['name_client', 'contract_number'] 
 
