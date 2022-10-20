@@ -11,10 +11,10 @@
 {% endblock %}
 
 {% block search %}
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"  data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation" >
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"  data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"  >
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input class="form-control form-control-dark w-60 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search" id="Search_now" >
+  <input class="form-control form-control-dark w-60 rounded-2 border-0" type="text" placeholder="Пошук " aria-label="Search" id="Search_now" >
   <div class="navbar-nav">
     <div class="nav-item text-nowrap" id="SearchButton" v-on:click="search_button()">
       <a class="nav-link px-3" href="#">Пошук</a>
@@ -83,9 +83,9 @@
             <td>{{ el.date }}</td>
             <td>{{ el.status_case }}</td>
             <td><a v-bind:href=" el.documents_case " download="">
-            <button>Скачать файл по справі <i class="fas fa-download"></i></button>
+            <button class="btn btn-outline-dark">Документи по справі</button>
             </a></td>
-      </tr> 
+      </tr>    
         </tr> 
         </tbody>
   </table>

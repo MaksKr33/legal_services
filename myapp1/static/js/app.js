@@ -5,14 +5,13 @@ var user_list = new Vue({
         Client: []
     },
     
-    created: function data_client() {
+    created: function () {
         const vm = this;
         axios.get('client')
         .then( function(response) {
         vm.Client = response.data
           }) 
-      }
-    
+      }    
 });
 
 
@@ -42,41 +41,6 @@ txtSearchEl.addEventListener('keydown', (event) => {
 btnSearchEl.addEventListener('click', () => {
   console.log('search button clicked')
 })
-
-
-var filter_button = new Vue({
-    el: '#filter_button',
-    methods: {
-      filter: function () {
-        const vm = user_list;
-        const api_type ='client/?type_case=';
-        const data_value = document.getElementById("date").value;
-        const date_contract_value = document.getElementById("date_contract").value;
-        // const filter_fieds = [
-        //   {
-        //     "filter_key": "type_case",
-        //     "filter_value": type_dropdown.selected
-        //   },
-        //   {
-        //     "filter_key": "status_case",
-        //     "filter_value": status_dropdown.selected
-        //   }
-        // ];
-        const selected_case = type_dropdown.selected;
-
-        // var request_url = "";
-        // for value in filter_fieds:
-        //   if value is not None:
-        //   request_url = request_url + "&" + value["filter_key"] + "=" + value["filter_value"]
-
-        //   request_url = "type_case=1&status_case=1"
-        axios.get(api_type + selected_case)
-        .then( function(response) {
-        vm.Client = response.data
-        }) 
-      }
-    }
-});
 
 
 var type_dropdown = new Vue({
@@ -109,17 +73,43 @@ var status_dropdown = new Vue({
 })
 
 
-var search_button = new Vue({
-  el: '#SearchButton',
+var filter_button = new Vue({
+  el: '#filter_button',
   methods: {
-    search_button: function () {
+    filter: function () {
       const vm = user_list;
-      const search_value = document.getElementById("Search_now").value;
-      const api_search = 'client/?search=';
-      axios.get(api_search + search_value)
+      const url_type ='client/?type_case=';
+      // const data_value = document.getElementById("date").value;
+      // const date_contract_value = document.getElementById("date_contract").value;
+      const selected_case = type_dropdown.selected;
+      // const select_status = status_dropdown.select;
+      // const filter_fieds = [
+      //   {
+      //     "filter_key": "type_case=",
+      //     "filter_value": "Кримінальна"
+      //   },
+      //   // {
+      //   //   "filter_key": "status_case",
+      //   //   "filter_value": status_dropdown.select
+      //   // }
+      // ];
+      
+
+      // var request_url = "";
+      // for (var key  of filter_fieds) {
+      //   // do something with 'key' and 'value' {
+      //     // if (value === undefined)
+      //     request_url = key + menu[key] ;}
+
+      //   request_url = "type_case=1&status_case=1"
+      axios.get(url_type + selected_case)
       .then( function(response) {
       vm.Client = response.data
       }) 
     }
   }
 });
+
+
+
+

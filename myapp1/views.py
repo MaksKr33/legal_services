@@ -21,7 +21,7 @@ def new_client(request):
             form.save()
             return redirect('/')
         else:
-            error = f"{form.errors} \n {form.data}"
+            error = "Введіть правильні дані"
 
     form = Baza_client_Form()
     context = {

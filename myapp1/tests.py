@@ -11,12 +11,18 @@
 # is_isogram('ervbslknG')
 
 
-def count_bits(n):
-    result = 0
-    byte_code = bin(n)
-    for i in byte_code:
-        if i == '1':
-            result = result + 1
-    return print(result) 
-count_bits(7)
+# def count_bits(n):
+#     result = 0
+#     byte_code = bin(n)
+#     for i in byte_code:
+#         if i == '1':
+#             result = result + 1
+#     return print(result) 
+# count_bits(7)
             
+def max (n):
+    m=0
+    for i in range(n):
+        
+       return print(lambda i:i+1)
+max(10) 
