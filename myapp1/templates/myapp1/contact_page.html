@@ -7,7 +7,7 @@
 {% block js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.1/vue.js"></script>
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 {% endblock %}
 
 {% block search %}
@@ -56,9 +56,8 @@
     {% endverbatim %}
           {% endblock %}
 
-{% block baza %} 
-          
-{% verbatim %}
+{% block baza %}           
+     {% verbatim %}
 
  <h6>
 <div class="table-responsive" id="contact_new">
@@ -83,7 +82,9 @@
             <td>{{ el.type_case }}</td>
             <td>{{ el.date }}</td>
             <td>{{ el.status_case }}</td>
-            <td>{{ el.documents_case }}</td>
+            <td><a v-bind:href=" el.documents_case " download="">
+            <button>Скачать файл по справі <i class="fas fa-download"></i></button>
+            </a></td>
       </tr> 
         </tr> 
         </tbody>
