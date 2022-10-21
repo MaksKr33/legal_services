@@ -78,31 +78,24 @@ var filter_button = new Vue({
   methods: {
     filter: function () {
       const vm = user_list;
-      const url_type ='client/?type_case=';
-      // const data_value = document.getElementById("date").value;
-      // const date_contract_value = document.getElementById("date_contract").value;
+      const url_type ='client/?';
+      const data_value = document.getElementById("date").value;
+      const date_contract_value = document.getElementById("date_contract").value;
       const selected_case = type_dropdown.selected;
-      // const select_status = status_dropdown.select;
-      // const filter_fieds = [
-      //   {
-      //     "filter_key": "type_case=",
-      //     "filter_value": "Кримінальна"
-      //   },
-      //   // {
-      //   //   "filter_key": "status_case",
-      //   //   "filter_value": status_dropdown.select
-      //   // }
-      // ];
+      const select_status = status_dropdown.select;
       
+     var general_filtering = new Map();
+     general_filtering.set("type_case=", selected_case);
+     general_filtering.set( "status_case=", select_status );
+     general_filtering.set('date=', data_value);
+     general_filtering.set('datacase=', date_contract_value);
+      
+      var reg = ''
+      for (var [key, value] of general_filtering) {
+          if (value !=0){
+             reg = reg+'&'+key+value}}
 
-      // var request_url = "";
-      // for (var key  of filter_fieds) {
-      //   // do something with 'key' and 'value' {
-      //     // if (value === undefined)
-      //     request_url = key + menu[key] ;}
-
-      //   request_url = "type_case=1&status_case=1"
-      axios.get(url_type + selected_case)
+      axios.get(url_type + reg.slice(1))
       .then( function(response) {
       vm.Client = response.data
       }) 
