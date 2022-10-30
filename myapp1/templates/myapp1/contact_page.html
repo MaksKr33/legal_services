@@ -8,6 +8,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.1/vue.js"></script>
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
 <script src="https://kit.fontawesome.com/263872ff85.js" crossorigin="anonymous"></script>
+<style>
+   .update { transform: scale(.7,  .7); }
+   .update:hover{transform: scale(1.5);}
+
+   .delete { transform: scale(.7,  .7); }
+   .delete:hover{transform: scale(1.5);}
+</style>
 
 {% endblock %}
 
@@ -73,8 +80,9 @@
         <th scope="col">Статус справи</th>
         <th scope="col">Дата подачі справи</th>
         <th scope="col">Дата складання договору</th>
-       
         <th scope="col">Документи по справі</th>
+        <th scope="col"></th>
+       
       </tr>
 
         <tbody>
@@ -86,10 +94,21 @@
              <td>{{ el.date }}</td>
             <td>{{ el.date_contract }}</td>
             <td>  <a v-bind:href=" el.documents_case " download="">
-            <button class="btn btn-outline-dark">Документи по справі</button>
+            <button class="btn btn-outline-dark">  Документи </button>
             </a> </td>
-            <td><i class="fa-sharp fa-solid fa-pen"></i> 
-              <i class="fa-solid fa-trash"></i></td>
+            <td>
+                <a v-bind:href=  "el.id+'/update'"  class="link-dark">
+                  <div class="update">
+                <i class="fa-sharp fa-solid fa-pen"></i> </a>
+                </div> 
+              
+                <!-- <div class="delete"> 
+                  <a href="{% url 'update_client'  el.id %}" class="link-dark">  
+                    <i class="fa-solid fa-trash">
+                     </i> 
+                  </a>
+                </div> -->
+            </td>
             
       </tr>    
         </tr> 

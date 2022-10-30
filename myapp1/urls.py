@@ -15,7 +15,7 @@ urlpatterns = [
         path('about', new_client , name= 'client'),
         path('info', informations , name= 'info_page'),
         path('contact', contact_new, name= 'contakt_client'),
-        path('about/<int:pk>/update', UpdateClients.as_view(), name= 'update_client')
+        path('<int:pk>/update', UpdateClients.as_view(), name= 'update_client')
        
 ] 
 
