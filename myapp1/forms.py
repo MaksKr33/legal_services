@@ -8,13 +8,10 @@ class Baza_client_Form (forms.ModelForm):
       
        class Meta: 
               model = Baza_client 
-              # def __init__(self, *args, **kwargs):
-              #        super().__init__(*args, **kwargs)
-              #        self.fields['type_case'].empty_label = 'lorem'
-                     
+
               
              
-              fields = ['name_client', 'contract_number', 'date_contract', 'type_case', 'date', 'status_case', 'documents_case' ]
+              fields = ['name_client', 'contract_number', 'date_contract', 'type_case', 'date', 'status_case', 'documents_case']
               widgets = {'name_client' : TextInput(attrs={
                      'class' : 'form-control',
                      'placeholder' : 'Введіть ПІБ'  }),
@@ -29,9 +26,7 @@ class Baza_client_Form (forms.ModelForm):
 
                      'type_case' : Select(attrs={
                      'class' : 'form-select',
-                     'value':   'Тип справи'}
-
-                     ),
+                     'value':   'Тип справи'}),
 
                      'date' :  DateInput(attrs={
                      'class' : 'form-control',
@@ -44,6 +39,8 @@ class Baza_client_Form (forms.ModelForm):
 
                      'documents_case' :FileInput(attrs={
                      'class' : 'btn btn-outline-primary ',
-                     'placeholder' : 'Загрузка документів'  } )}
+                     'placeholder' : 'Загрузка документів'  } )
+                     
+                      }
 
 

@@ -4,7 +4,6 @@ var user_list = new Vue({
     data: {
         Client: []
     },
-    
     created: function () {
         const vm = this;
         axios.get('client')
@@ -88,8 +87,10 @@ var filter_button = new Vue({
      general_filtering.set("type_case=", selected_case);
      general_filtering.set( "status_case=", select_status );
      general_filtering.set('date=', data_value);
-     general_filtering.set('datacase=', date_contract_value);
-      
+     general_filtering.set('date_contract=', date_contract_value);
+    
+    //  .replace(/^(\d+)-(\d+)-(\d+)$/, `$3.$2.$1`)
+           
       var reg = ''
       for (var [key, value] of general_filtering) {
           if (value !=0){
@@ -105,4 +106,16 @@ var filter_button = new Vue({
 
 
 
-
+var user_create = new Vue({
+  el: '#new_client',
+  data: {
+      Client: []
+  },
+  created: function () {
+      const vm = this;
+      axios.post('client')
+      .then( function(response) {
+      vm.Client = response.data
+        }) 
+    }    
+})

@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'rest_framework',
+    # 'rest_framework.authtoken'
     'myapp1'
 ]
 
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # '<path-of-utils.py>.utils.DisableCSRF',
 ]
 
 ROOT_URLCONF = 'legal_services.urls'
@@ -130,8 +133,18 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
-    )
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+       
+        'rest_framework.authentication.BasicAuthentication'
+    #     # 'rest_framework.authentication.SessionAuthentication',
+    # ] ,
+    
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
 }
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

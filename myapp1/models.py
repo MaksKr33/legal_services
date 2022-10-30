@@ -9,10 +9,13 @@ class Baza_client(models.Model):
     type_case = models.ForeignKey('TypeCase',  null = True, on_delete=models.CASCADE)
     date = models.DateField('Дата подачі справи')
     status_case = models.ForeignKey('StatusCase', null = True, on_delete=models.CASCADE)
-    documents_case = models.FileField('Загрузка документів', upload_to = 'DownloadFile/%Y/%m/%d/')
+    documents_case = models.FileField('Загрузка документів', null = True, upload_to = 'DownloadFile/%Y/%m/%d/')
 
     def __str__(self):
         return self.name_client
+
+    def get_absolute_url(self):
+        return f'/contact'
 
 class TypeCase(models.Model):
     NameTypeCase = models.CharField(max_length = 100)

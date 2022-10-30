@@ -7,6 +7,7 @@
 {% block js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.1/vue.js"></script>
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
+<script src="https://kit.fontawesome.com/263872ff85.js" crossorigin="anonymous"></script>
 
 {% endblock %}
 
@@ -57,7 +58,8 @@
           {% endblock %}
 
 {% block baza %}           
-     {% verbatim %}
+
+{% verbatim %}
 
  <h6>
 <div class="table-responsive" id="contact_new">
@@ -67,25 +69,28 @@
       <tr>
         <th scope="col">ПІБ Клієнта</th>
         <th scope="col">Номер договору</th>
-        <th scope="col">Дата складання договору</th>
         <th scope="col">Тип справи</th>
-        <th scope="col">Дата подачі справи</th>
         <th scope="col">Статус справи</th>
+        <th scope="col">Дата подачі справи</th>
+        <th scope="col">Дата складання договору</th>
+       
         <th scope="col">Документи по справі</th>
       </tr>
-     </h5>   
-      <h6>
+
         <tbody>
           <tr v-for="el in Client"  :value="el.id">
-            <td>{{ el.name_client }}</td>
-            <td>{{ el.contract_number }}</td>
-            <td>{{ el.date }}</td>
-            <td>{{ el.type_case }}</td>
-            <td>{{ el.date }}</td>
-            <td>{{ el.status_case }}</td>
-            <td><a v-bind:href=" el.documents_case " download="">
+            <td> {{ el.name_client }} </td>
+            <td>{{ el.contract_number }}</td> 
+             <td>{{ el.type_case }}</td>
+             <td>{{ el.status_case }}</td>
+             <td>{{ el.date }}</td>
+            <td>{{ el.date_contract }}</td>
+            <td>  <a v-bind:href=" el.documents_case " download="">
             <button class="btn btn-outline-dark">Документи по справі</button>
-            </a></td>
+            </a> </td>
+            <td><i class="fa-sharp fa-solid fa-pen"></i> 
+              <i class="fa-solid fa-trash"></i></td>
+            
       </tr>    
         </tr> 
         </tbody>

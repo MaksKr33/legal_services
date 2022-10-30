@@ -1,5 +1,11 @@
 {% extends 'myapp1/base.html' %}
 
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.1/vue.js"></script>
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
+
+{% endblock %}
+
 {% block title %} 
  новий клієнт
 {% endblock %}
@@ -8,18 +14,35 @@
  <h1>  Форма додавання</h1>
 {% endblock %}
 {% block baza%}
-    <form method="post" enctype="multipart/form-data">
+
+ 
+ <form method="post" enctype="multipart/form-data">
+     <!-- <div class="form-group" id="new_client" v-model="form in Client"  >
+     -->
         {% csrf_token %}
         {{ form.name_client }}<br>
         {{ form.contract_number }}<br>
         {{ form.date_contract }}<br>
-        <label  class="form-label ">Тип справи</label>
         {{ form.type_case }}<br>
         {{ form.date }}<br>
         {{ form.status_case }}<br>
-        {{ form.documents_case }}<br><br>
+        {{ form.documents_case }}<br>
         <button type="submit" class="btn btn-success"> Зареєструвати</button><br><br>  
-        <span>{{ error }}</span>    
+       
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
+            <h4 class="modal-title">{{ error }}</h4>
+            </div>
+            <div class="modal-body">Текст уведомления</div>
+            <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button></div>
+            </div>
+            </div>
+            </div>
+        </div>
     </form>
 
+
+<script src="static/js/app.js"></script>
 {% endblock %}
