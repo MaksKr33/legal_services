@@ -13,4 +13,16 @@ class OrderSeriaLizer(ModelSerializer):
         
         fields = ["id",'name_client', 'contract_number', 'date_contract', 'type_case', 'date', 'status_case', 'documents_case']
 
+class StatusCaseSeriaLizer(ModelSerializer):
+    
+    class Meta:
+        model = StatusCase
+        fields = ['id','NameStatusCase']
+        
+
+class TypeCaseSeriaLizer(ModelSerializer):
+    
+    class Meta:
+        model = TypeCase
+        fields = ['id','NameTypeCase']
        

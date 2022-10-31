@@ -4,9 +4,7 @@ from myapp1.models import StatusCase, TypeCase , Baza_client
 from .models import Baza_client, StatusCase, TypeCase 
 from .forms import Baza_client_Form
 from rest_framework.viewsets import ModelViewSet
-from .serializers import OrderSeriaLizer
-from .type_case_serializers import TypeCaseSeriaLizer
-from . status_case_serializers import StatusCaseSeriaLizer
+from .serializers import OrderSeriaLizer, StatusCaseSeriaLizer, TypeCaseSeriaLizer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 # from rest_framework.permissions import IsAuthenticated
@@ -39,8 +37,13 @@ def new_client(request):
 class UpdateClients(UpdateView):
     model= Baza_client
     template_name = 'myapp1/new_client.html'
-
     form_class = Baza_client_Form
+    
+    
+    
+    # file_to_update = Baza_client.objects.all()[6]
+    # file_to_update.documents_case = 'foo'
+    # file_to_update.save()
 
 
 # def contact(request):
@@ -65,8 +68,7 @@ class OrederViews(ModelViewSet):
 
 class TypeViews(ModelViewSet):
     queryset = TypeCase.objects.all()
-    serializer_class = TypeCaseSeriaLizer
-
+    serializer_class =  TypeCaseSeriaLizer
 
 class StatusViews (ModelViewSet):
     queryset = StatusCase.objects.all()

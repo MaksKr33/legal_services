@@ -1,7 +1,7 @@
 
 
 from django.urls import path
-from myapp1.views import OrederViews,TypeViews, StatusViews, UpdateClients, contact_new,   base , informations, new_client
+from myapp1.views import OrederViews, TypeViews, StatusViews, UpdateClients, contact_new, base, informations, new_client
 
 from rest_framework.routers import SimpleRouter
 

@@ -14,7 +14,10 @@ var user_list = new Vue({
 });
 
 
-var search_button = new Vue({
+
+
+
+var search = new Vue({
   el: '#SearchButton',
   methods: {
     search_button: function () {
@@ -30,16 +33,25 @@ var search_button = new Vue({
 });
 
 
-const txtSearchEl = document.getElementById('Search_now')
+// const txtSearchEl = document.getElementById('Search_now')
+// const btnSearchEl = document.getElementById('SearchButton')
+// txtSearchEl.addEventListener('keydown', (event) => {
+//   if (event.key === "Enter") {
+//     btnSearchEl.click()
+//   }
+// })
+// btnSearchEl.addEventListener('click', () => {
+//   console.log('search button clicked')
+// });
+
+
+const txtSearchEl = document.getElementById('#Search_now')
 const btnSearchEl = document.getElementById('SearchButton')
-txtSearchEl.addEventListener('keydown', (event) => {
-  if (event.key === "Enter") {
-    btnSearchEl.click()
-  }
-})
-btnSearchEl.addEventListener('click', () => {
-  console.log('search button clicked')
-})
+document.querySelector('#Search_now').oninput = function(){
+btnSearchEl.click()
+ 
+
+btnSearchEl.addEventListener('click')};
 
 
 var type_dropdown = new Vue({
@@ -69,7 +81,7 @@ var status_dropdown = new Vue({
         vm.case_status.push(...response.data);
     }) 
   }
-})
+});
 
 
 var filter_button = new Vue({
@@ -102,20 +114,20 @@ var filter_button = new Vue({
       }) 
     }
   }
-});
-
-
-
-var user_create = new Vue({
-  el: '#new_client',
-  data: {
-      Client: []
-  },
-  created: function () {
-      const vm = this;
-      axios.post('client')
-      .then( function(response) {
-      vm.Client = response.data
-        }) 
-    }    
 })
+
+
+
+// var user_create = new Vue({
+//   el: '#new_client',
+//   data: {
+//       Client: []
+//   },
+//   created: function () {
+//       const vm = this;
+//       axios.post('client')
+//       .then( function(response) {
+//       vm.Client = response.data
+//         }) 
+//     }    
+// })
