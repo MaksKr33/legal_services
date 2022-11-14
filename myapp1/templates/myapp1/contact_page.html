@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block js %}
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.1/vue.js"></script>
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
 <script src="https://kit.fontawesome.com/263872ff85.js" crossorigin="anonymous"></script>
@@ -25,7 +26,7 @@
   <input class="form-control form-control-dark w-60 rounded-2 border-0" type="text" placeholder="Пошук " aria-label="Search" id="Search_now" >
   <div class="navbar-nav">
     <div class="nav-item text-nowrap" id="SearchButton" v-on:click="search_button()">
-      <a class="nav-link px-3" href="#">Пошук</a>
+      <a class="nav-link px-3" href="#"></a>
     </div>
   </div> -->
 {% endblock%}
@@ -34,7 +35,7 @@
 {% verbatim %}
            
       <div class="col-md-1.7">
-        <select class="form-select" id="type_case_select" v-model="selected">
+        <select onchange="foo()" class="form-select" id="type_case_select" v-model="selected">
           <option v-for="item in case_types" :value="item.id" :key="item.id">
             {{ item.NameTypeCase }}
           </option>
@@ -87,36 +88,80 @@
       </tr>
 
         <tbody>
-          <tr v-for="el in Client"  :value="el.id">
+          <tr v-for="el in Client"  :value="el.id" :key="el.id">
             <td> {{ el.name_client }} </td>
-            <td>{{ el.contract_number }}</td> 
+             <td>{{ el.contract_number }}</td> 
              <td>{{ el.type_case }}</td>
              <td>{{ el.status_case }}</td>
              <td>{{ el.date }}</td>
-            <td>{{ el.date_contract }}</td>
-            <td>  <a v-bind:href=" el.documents_case " download="">
+             <td>{{ el.date_contract }}</td>
+             <!-- <td> 
+              
+              <button class="btn btn-outline-success"  v-on:click="deletes()"> видалити</button></td> -->
+            
+              <td>  <a v-bind:href=" el.documents_case " download=""> 
             <button class="btn btn-outline-dark">  Документи </button>
             </a> </td>
-            <td>
-                <a v-bind:href=  "el.id+'/update'"  class="link-dark">
-                  <div class="update">
-                <i class="fa-sharp fa-solid fa-pen"></i> </a>
-                </div> 
-              
-                <div class="delete"> 
-                  <a href="el.id+'/update'" class="link-dark">  
-                    <i class="fa-solid fa-trash">
-                     </i> 
-                  </a>
-                </div>
-            </td>
             
-      </tr>    
-        </tr> 
+            <td>
+                <a v-bind:href=  "el.id+'/update'"  class="link-dark"  name="el.name_client">
+                   <div class="update">
+                <i class="fa-sharp fa-solid fa-pen" ></i> </a> </div>
+                    
+    
+                <!-- <form id="delete_form" v-bind:action="'client/'+el.id" method="delete"></form>
+                <div class="delete">
+                    <a class="link-dark" href="javascript:void()" onclick="delete_question()"> <i class="fa-solid fa-trash" > </i>
+                    </a></div> -->
+                    
+                      <div class="delete">
+                    <form id="delete_form" v-bind:action="'client/'+el.id" method="delete"></form>
+                
+                    <a class="link-dark" href="javascript:void()" onclick="delete_question('el.name_client')"> 
+                       <i class="fa-solid fa-trash" > </i>
+                    </a></div>
+
+                    <script>
+                      function delete_question(ide) {
+                          if (confirm("Ви хочете видалити клієнта "+ ide )) {
+                              document.getElementById('delete_form').submit()
+                        }
+        
+                    }
+        
+                    </script>
+                    
+                    <!-- <div class="modal" tabindex="-1">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <p>Modal body text goes here.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div> -->
+                
+                
+                
+                
+          
+            </td>
+          </tr>    
+        
         </tbody>
   </table>
 </div>
 </h6>
+
+
 {% endverbatim %}
 
 <script src="static/js/app.js"></script>

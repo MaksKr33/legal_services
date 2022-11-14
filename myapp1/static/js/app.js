@@ -10,12 +10,19 @@ var user_list = new Vue({
         .then( function(response) {
         vm.Client = response.data
           }) 
-      }    
+      },
+      // deleteData(Id) {
+      //   axios
+      //     .delete('client/' + Id)
+      //     .then(response => {
+      //       this.result.splice(Id, 1);
+      //       // console.log(this.result);
+      //     });
+      // }
+     
+
 });
-
-
-
-
+           
 
 var search = new Vue({
   el: '#SearchButton',
@@ -33,25 +40,10 @@ var search = new Vue({
 });
 
 
-// const txtSearchEl = document.getElementById('Search_now')
-// const btnSearchEl = document.getElementById('SearchButton')
-// txtSearchEl.addEventListener('keydown', (event) => {
-//   if (event.key === "Enter") {
-//     btnSearchEl.click()
-//   }
-// })
-// btnSearchEl.addEventListener('click', () => {
-//   console.log('search button clicked')
-// });
-
-
-const txtSearchEl = document.getElementById('#Search_now')
 const btnSearchEl = document.getElementById('SearchButton')
-document.querySelector('#Search_now').oninput = function(){
-btnSearchEl.click()
- 
-
-btnSearchEl.addEventListener('click')};
+  document.querySelector('#Search_now').oninput = function(){
+  btnSearchEl.click()
+  btnSearchEl.addEventListener('click')};
 
 
 var type_dropdown = new Vue({
@@ -84,7 +76,7 @@ var status_dropdown = new Vue({
 });
 
 
-var filter_button = new Vue({
+var filterbutton = new Vue({
   el: '#filter_button',
   methods: {
     filter: function () {
@@ -101,12 +93,12 @@ var filter_button = new Vue({
      general_filtering.set('date=', data_value);
      general_filtering.set('date_contract=', date_contract_value);
     
-    //  .replace(/^(\d+)-(\d+)-(\d+)$/, `$3.$2.$1`)
+
            
       var reg = ''
       for (var [key, value] of general_filtering) {
           if (value !=0){
-             reg = reg+'&'+key+value}}
+             reg = reg +'&'+ key + value}}
 
       axios.get(url_type + reg.slice(1))
       .then( function(response) {
@@ -116,6 +108,26 @@ var filter_button = new Vue({
   }
 })
 
+
+const btnFilterDate = document.getElementById('filter_button')
+  document.querySelector('#date').oninput = function(){
+  btnFilterDate.click()
+  btnFilterDate.addEventListener('click')};
+
+  const btnFilterDateContract = document.getElementById('filter_button')
+  document.querySelector('#date_contract').oninput = function(){
+  btnFilterDateContract.click()
+  btnFilterDateContract.addEventListener('click')};
+ 
+  const btnFilterTypeCase = document.getElementById('filter_button')
+  function foo(){
+    btnFilterTypeCase.click()
+    btnFilterTypeCase.addEventListener('click')};
+  
+  // const btnFilterTupeCase = document.getElementById('filter_button')
+  // type_dropdown.oninput = function(){
+  //   btnFilterTupeCase.click()
+  //   btnFilterTupeCase.addEventListener('click')};
 
 
 // var user_create = new Vue({
@@ -131,3 +143,5 @@ var filter_button = new Vue({
 //         }) 
 //     }    
 // })
+
+

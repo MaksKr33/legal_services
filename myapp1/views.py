@@ -1,4 +1,4 @@
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DeleteView
 from django.shortcuts import render, redirect
 from myapp1.models import StatusCase, TypeCase , Baza_client
 from .models import Baza_client, StatusCase, TypeCase 
@@ -7,7 +7,9 @@ from rest_framework.viewsets import ModelViewSet
 from .serializers import OrderSeriaLizer, StatusCaseSeriaLizer, TypeCaseSeriaLizer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
+from django.urls import reverse_lazy
 # from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 
 def base(request):
@@ -38,18 +40,8 @@ class UpdateClients(UpdateView):
     model= Baza_client
     template_name = 'myapp1/new_client.html'
     form_class = Baza_client_Form
-    
-    
-    
-    # file_to_update = Baza_client.objects.all()[6]
-    # file_to_update.documents_case = 'foo'
-    # file_to_update.save()
 
-
-# def contact(request):
-#     clients = Baza_client.objects.all()
-#     return render(request,'myapp1/contact_page.html', {'name_clients': 'База клієнтів', 'Klient': clients })
-
+    
 def contact_new(request):
     return render(request,'myapp1/contact_page.html')
 
@@ -64,7 +56,10 @@ class OrederViews(ModelViewSet):
     ordering_fields = ['name_client', 'contract_number']
     search_fields = ['name_client', 'contract_number'] 
 
-   
+    def destroy (self, request, *args, **kwargs):
+        client_del = self.get_object()
+        client_del.delete()
+        return Response({'messsage' : "Delete user"})
 
 class TypeViews(ModelViewSet):
     queryset = TypeCase.objects.all()
@@ -74,6 +69,8 @@ class StatusViews (ModelViewSet):
     queryset = StatusCase.objects.all()
     serializer_class =  StatusCaseSeriaLizer
     
-    
+
+
+   
    
  
