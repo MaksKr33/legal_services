@@ -11,16 +11,6 @@ var user_list = new Vue({
         vm.Client = response.data
           }) 
       },
-      // deleteData(Id) {
-      //   axios
-      //     .delete('client/' + Id)
-      //     .then(response => {
-      //       this.result.splice(Id, 1);
-      //       // console.log(this.result);
-      //     });
-      // }
-     
-
 });
            
 
@@ -124,24 +114,4 @@ const btnFilterDate = document.getElementById('filter_button')
     btnFilterTypeCase.click()
     btnFilterTypeCase.addEventListener('click')};
   
-  // const btnFilterTupeCase = document.getElementById('filter_button')
-  // type_dropdown.oninput = function(){
-  //   btnFilterTupeCase.click()
-  //   btnFilterTupeCase.addEventListener('click')};
-
-
-// var user_create = new Vue({
-//   el: '#new_client',
-//   data: {
-//       Client: []
-//   },
-//   created: function () {
-//       const vm = this;
-//       axios.post('client')
-//       .then( function(response) {
-//       vm.Client = response.data
-//         }) 
-//     }    
-// })
-
 

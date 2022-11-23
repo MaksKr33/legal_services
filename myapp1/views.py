@@ -1,8 +1,9 @@
-from django.views.generic import UpdateView, DeleteView
+from django.views.generic import UpdateView, CreateView
+from django.contrib.auth import logout
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from myapp1.models import StatusCase, TypeCase , Baza_client
 from .models import Baza_client, StatusCase, TypeCase 
-from .forms import Baza_client_Form
+from .forms import Baza_client_Form, RegisterUserForm, LoginUserForm
 from rest_framework.viewsets import ModelViewSet
 from .serializers import OrderSeriaLizer, StatusCaseSeriaLizer, TypeCaseSeriaLizer
 from django_filters.rest_framework import DjangoFilterBackend
@@ -10,6 +11,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from django.urls import reverse_lazy
 # from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+  
 
 
 def base(request):
@@ -18,6 +20,8 @@ def base(request):
 def informations(request):
     return render(request,'myapp1/informations.html')
     
+def contact_new(request):
+    return render(request,'myapp1/contact_page.html')    
 
 def new_client(request):
     error = ''
@@ -34,17 +38,30 @@ def new_client(request):
         'error': error,
          'form': form}
     return render(request,'myapp1/new_client.html', context)
-
-
+    
+    
 class UpdateClients(UpdateView):
     model= Baza_client
     template_name = 'myapp1/new_client.html'
     form_class = Baza_client_Form
 
-    
-def contact_new(request):
-    return render(request,'myapp1/contact_page.html')
 
+class RegisterForm(CreateView):
+    form_class= RegisterUserForm
+    template_name = 'myapp1/register_user.html'
+    success_url = 'contact'
+
+class LoginForm(LoginView):
+    form_class = LoginUserForm
+    template_name = 'myapp1/Login.html'
+    success_url = 'contact'
+
+    def get_success_url(self) -> str:
+        return reverse_lazy('contakt_client')
+
+def logout_user(request):
+    logout (request)
+    return redirect('login') 
 
 class OrederViews(ModelViewSet):
    
@@ -59,7 +76,7 @@ class OrederViews(ModelViewSet):
     def destroy (self, request, *args, **kwargs):
         client_del = self.get_object()
         client_del.delete()
-        return Response({'messsage' : "Delete user"})
+        return Response({'messsage' : "Клієнт успішно видалений"})
 
 class TypeViews(ModelViewSet):
     queryset = TypeCase.objects.all()
@@ -69,6 +86,10 @@ class StatusViews (ModelViewSet):
     queryset = StatusCase.objects.all()
     serializer_class =  StatusCaseSeriaLizer
     
+
+
+
+
 
 
    
