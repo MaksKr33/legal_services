@@ -1,5 +1,5 @@
 from django.views.generic import UpdateView, CreateView
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from .models import Baza_client, StatusCase, TypeCase 
@@ -49,8 +49,14 @@ class UpdateClients(UpdateView):
 class RegisterForm(CreateView):
     form_class= RegisterUserForm
     template_name = 'myapp1/register_user.html'
-    success_url = 'contact'
+    success_url = 'login'
 
+    # def form_valid(self, form):
+    #     user = form.save()
+    #     login(self.request, user)
+    #     return redirect('contact')
+
+    
 class LoginForm(LoginView):
     form_class = LoginUserForm
     template_name = 'myapp1/Login.html'
@@ -62,6 +68,7 @@ class LoginForm(LoginView):
 def logout_user(request):
     logout (request)
     return redirect('login') 
+
 
 class OrederViews(ModelViewSet):
    

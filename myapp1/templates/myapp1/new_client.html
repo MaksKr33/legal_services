@@ -4,35 +4,61 @@
  новий клієнт
 {% endblock %}
 
+
 {% block document %} 
- <h1>  Форма додавання</h1>
+ <h1> <font face="Monotype Corsiva, Arial"> Новий клієнт</h1></font>
 {% endblock %}
 {% block baza%}
+<style>
+       *{
+   padding: 0px;
+   margin: 0; 
+}
+    .container{
+    width: 1200px;
+    margin: 0 auto;
+    margin-right: 0px;
+    margin-top: 7%;
+    position: fixed; 
+    top: 10%; 
+    left: 35%;
+    
+    width: 470px; 
+    min-height: 550px;
+    max-height: 200px; 
+    margin:0 auto;
+    margin-top: 5px;
+    }  
+</style>
 
- 
+
+<div class="container">
+<div class="someDiv">
  <form method="post" enctype="multipart/form-data">
      <!-- <div class="form-group" id="new_client" v-model="form in Client"  >
      -->
         {% csrf_token %}
-        {{ form.name_client }}<br>
+        {{ form.name_client }}<br >
         {{ form.contract_number }}<br>
         {{ form.date_contract }}<br>
         {{ form.type_case }}<br>
         {{ form.date }}<br>
         {{ form.status_case }}<br>
         {{ form.documents_case }}<br>
-        <button type="submit" class="btn btn-success"> Зареєструвати</button><br><br>  
-       
+        <button type="submit" class="btn btn-success"> Зареєструвати</button><br>  
+    </div>
         <div id="myModal" class="modal fade">
             <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header"><button class="close" type="button" data-dismiss="modal"></button>
-            <h4 class="modal-title">{{ error }}</h4>
-            </div>
-            <div class="modal-body">Текст уведомления</div>
-            <div class="modal-footer"><button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button></div>
-            </div>
-            </div>
+                <div class="modal-content">
+                    <div class="modal-header"><button class="close" type="button" data-dismiss="modal"></button>
+                        <h4 class="modal-title">{{ error }}</h4>
+                    </div>
+                    <div class="modal-body">Текст уведомления</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
+                    </div>
+                    </div>
+                </div></div>
             </div>
         </div>
     </form>

@@ -8,11 +8,19 @@ var user_list = new Vue({
         const vm = this;
         axios.get('client')
         .then( function(response) {
-        vm.Client = response.data
-          }) 
-      },
+          vm.Client = response.data
+        }) 
+    },
+    methods: {
+      delete_user: function(user_name, user_id) {
+        if (confirm("Ви хочете видалити клієнта " + user_name )) {
+          axios.get('client/' + user_id).then( function(response) {
+            location.reload();
+          })
+        }
+      }
+    }
 });
-           
 
 var search = new Vue({
   el: '#SearchButton',
@@ -23,7 +31,7 @@ var search = new Vue({
       const api_search = 'client/?search=';
       axios.get(api_search + search_value)
       .then( function(response) {
-      vm.Client = response.data
+        vm.Client = response.data
       }) 
     }
   }
@@ -114,4 +122,3 @@ const btnFilterDate = document.getElementById('filter_button')
     btnFilterTypeCase.click()
     btnFilterTypeCase.addEventListener('click')};
   
-

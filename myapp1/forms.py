@@ -8,10 +8,12 @@ from django.forms.widgets import TextInput,  NumberInput, DateInput, Select, Cle
 
 class Baza_client_Form (forms.ModelForm):
       
+       def __init__(self, *args, **kwargs):
+              super().__init__(*args, **kwargs)
+              self.fields['type_case'].empty_label = "Тип справи"
+              self.fields['status_case'].empty_label = "Статус справи"
        class Meta: 
-              model = Baza_client 
-
-              
+              model = Baza_client  
              
               fields = ['name_client', 'contract_number', 'date_contract', 'type_case', 'date', 'status_case', 'documents_case']
               widgets = {'name_client': TextInput(attrs={
