@@ -90,14 +90,11 @@ var filterbutton = new Vue({
      general_filtering.set( "status_case=", select_status );
      general_filtering.set('date=', data_value);
      general_filtering.set('date_contract=', date_contract_value);
-    
-
-           
+         
       var reg = ''
       for (var [key, value] of general_filtering) {
           if (value !=0){
              reg = reg +'&'+ key + value}}
-
       axios.get(url_type + reg.slice(1))
       .then( function(response) {
       vm.Client = response.data
@@ -108,9 +105,9 @@ var filterbutton = new Vue({
 
 
 const btnFilterDate = document.getElementById('filter_button')
-  document.querySelector('#date').oninput = function(){
-  btnFilterDate.click()
-  btnFilterDate.addEventListener('click')};
+    document.querySelector('#date').oninput = function(){
+    btnFilterDate.click()
+    btnFilterDate.addEventListener('click')};
 
   const btnFilterDateContract = document.getElementById('filter_button')
   document.querySelector('#date_contract').oninput = function(){

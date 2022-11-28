@@ -1,46 +1,13 @@
 {% extends 'myapp1/base.html' %}
+{% block menu %}
+{% endblock %}
+
+{% block document %} 
+    
+{% endblock %}
+
 {% block baza %} 
 <script src="https://kit.fontawesome.com/281c808ed5.js" crossorigin="anonymous"></script>
-
-<style>
-    .block{ 
-    border: inset lightskyblue;
-    width: 400px; 
-    min-height: 45px;
-    max-height: 500px; 
-    margin:0 left;
-    
- }
-   .block { transform: scale(1.0,  1.0); }
-   .block:hover{transform: scale(1.1);}
-
-   .block2{ 
-    border: 1px solid black; 
-    width: 420px; 
-    min-height:45px;
-    max-height: 500px; 
-    margin-left: 570px;
-    margin-top: -45px;
-    box-shadow: 5px 5px 5px 0px;
-    padding: 0.3rem;
- }
-   .block2 { transform: scale(1.0,  1.0); }
-   .block2:hover{transform: scale(1.1);}
-
-   .block3{ 
-    border: inset lightskyblue;
-    width: 400px; 
-    min-height: 45px;
-    max-height: 500px;
-     
-    margin:0 left;
-    margin-top: 40px;
- }
-   .block3 { transform: scale(1.0,  1.0); }
-   .block3:hover{transform: scale(1.1);}
-
-   
-</style>
 <body>
     <h3 >
     <div class="block" > <font face="Monotype Corsiva, Arial"> Реєстр судових рішень   ------------> 
@@ -71,7 +38,7 @@
             <i class="fa-solid fa-magnifying-glass"></i>
         </a> 
     </div>
-    <div class="block2">Судові засідання онлайн------------->
+    <div class="block2">Судові засідання онлайн------------>
         <a href="https://vkz.court.gov.ua/" class="link-dark"  name="6">  
             <i class="fa-solid fa-school-circle-check"></i>
         </a> 
@@ -83,7 +50,7 @@
         </a> 
     </div>
 
-    <div class="block2">Цифровий підпис----------------------->
+    <div class="block2">Цифровий підпис---------------------->
         <a href="https://sign.diia.gov.ua/" class="link-dark"  name="8">  
             <i class="fa-sharp fa-solid fa-pen"></i>
         </a> 
@@ -134,6 +101,7 @@
             <i class="fa-solid fa-file-signature"></i>
         </a> 
     </div>
+    </font>
 </h3>
 </body>            
 

@@ -4,35 +4,16 @@
  новий клієнт
 {% endblock %}
 
+{% block menu %}
+{% endblock %}
 
 {% block document %} 
  <h1> <font face="Monotype Corsiva, Arial"> Новий клієнт</h1></font>
 {% endblock %}
 {% block baza%}
-<style>
-       *{
-   padding: 0px;
-   margin: 0; 
-}
-    .container{
-    width: 1200px;
-    margin: 0 auto;
-    margin-right: 0px;
-    margin-top: 7%;
-    position: fixed; 
-    top: 10%; 
-    left: 35%;
-    
-    width: 470px; 
-    min-height: 550px;
-    max-height: 200px; 
-    margin:0 auto;
-    margin-top: 5px;
-    }  
-</style>
 
 
-<div class="container">
+<div class="new_client">
 <div class="someDiv">
  <form method="post" enctype="multipart/form-data">
      <!-- <div class="form-group" id="new_client" v-model="form in Client"  >

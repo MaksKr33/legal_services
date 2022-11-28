@@ -1,9 +1,9 @@
 from django.views.generic import UpdateView, CreateView
-from django.contrib.auth import logout, login
+from django.contrib.auth import logout,  authenticate
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from .models import Baza_client, StatusCase, TypeCase 
-from .forms import Baza_client_Form, RegisterUserForm, LoginUserForm
+from .forms import Baza_client_Form,  LoginUserForm
 from rest_framework.viewsets import ModelViewSet
 from .serializers import OrderSeriaLizer, StatusCaseSeriaLizer, TypeCaseSeriaLizer
 from django_filters.rest_framework import DjangoFilterBackend
@@ -18,10 +18,7 @@ def base(request):
     return render(request,'myapp1/base.html')
 
 def informations(request):
-    return render(request,'myapp1/informations.html')
-    
-def contact_new(request):
-    return render(request,'myapp1/contact_page.html')    
+    return render(request,'myapp1/informations.html')  
 
 def new_client(request):
     error = ''
@@ -45,26 +42,16 @@ class UpdateClients(UpdateView):
     template_name = 'myapp1/new_client.html'
     form_class = Baza_client_Form
 
-
-class RegisterForm(CreateView):
-    form_class= RegisterUserForm
-    template_name = 'myapp1/register_user.html'
-    success_url = 'login'
-
-    # def form_valid(self, form):
-    #     user = form.save()
-    #     login(self.request, user)
-    #     return redirect('contact')
-
-    
+        
 class LoginForm(LoginView):
     form_class = LoginUserForm
     template_name = 'myapp1/Login.html'
-    success_url = 'contact'
 
-    def get_success_url(self) -> str:
-        return reverse_lazy('contakt_client')
 
+    def get_success_url(self) :
+        return reverse_lazy('home')
+    
+    
 def logout_user(request):
     logout (request)
     return redirect('login') 
@@ -88,6 +75,11 @@ class OrederViews(ModelViewSet):
 class TypeViews(ModelViewSet):
     queryset = TypeCase.objects.all()
     serializer_class =  TypeCaseSeriaLizer
+
+    def destro (self, request, *args, **kwargs):
+        client_del = self.get_object()
+        client_del.delete()
+        return Response({'messsage' : "Clean"})
 
 class StatusViews (ModelViewSet):
     queryset = StatusCase.objects.all()
