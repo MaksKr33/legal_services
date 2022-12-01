@@ -7,7 +7,7 @@
     <meta name="description" content="">
    
     <title> {% block title %} {% endblock %}</title>
-    
+    <link rel="stylesheet" type="text/css" href="lib/sweet-alert.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href= "{% static 'filecss/css/menueefect.css'%}"/>
@@ -17,167 +17,154 @@
     <script src=" https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
     <script src="https://kit.fontawesome.com/263872ff85.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
-   
+  
   </head>
- 
-  <body> 
-    {% if request.user.is_authenticated %}      
-    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-2 fs-3" href="{% url 'home' %}">
-        <h5>LAWYER'S ASSISTANT</h5>
-      </a>
-   
-      {% block menu %}
-    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"  data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"  >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <input class="form-control form-control-dark w-60 rounded-2 border-0" type="text" placeholder="Пошук " aria-label="Search" id="Search_now" >
-      <div class="navbar-nav">
-        <div class="nav-item text-nowrap" id="SearchButton" v-on:click="search_button()">
-          <a class="nav-link px-3" href="#"></a>
+    <body>      
+      <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+          <a class="navbar-brand col-md-3 col-lg-2 me-0 px-2 fs-3" href="{% url 'home' %}">
+            <h5>LAWYER'S ASSISTANT</h5>
+          </a>
+          {% block menu %}
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button"  data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"  >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <input class="form-control form-control-dark w-60 rounded-2 border-0" type="text" placeholder="Пошук " aria-label="Search" id="Search_now" >
+          <div class="navbar-nav">
+            <div class="nav-item text-nowrap" id="SearchButton" v-on:click="search_button()">
+              <a class="nav-link px-3" href="#"></a>
+            </div>
+          </div>
+    {% endblock %} 
+      <div class="user">
+        <button type="button" class="btn btn-secondary btn-lg" disabled>{{ user.username }}</button>
+          <a class="link-secondary col-md-3 col-lg-1 me-0 px-2 fs-0" href="{% url 'logout' %} "> Вийти </a> 
+      </div>
+    </header>
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt- sidebar-sticky">
+          <ul class="nav flex-column">          
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">
+                            Головна сторінка
+              </a>
+            </li>         
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'client' %}">           
+              Новий  Клієнт
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'info_page' %}">             
+                Корисні ресурси
+              </a>
+            </li>
         </div>
-      </div>
+      </nav>
 
- {% endblock %} 
-  <div class="user">
-    <button type="button" class="btn btn-secondary btn-lg" disabled>{{ user.username }}</button>
-      <a class="link-secondary col-md-3 col-lg-1 me-0 px-2 fs-0" href="{% url 'logout' %} "> Вийти </a> 
-  </div>
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
 
-</header>
-<div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-sticky pt- sidebar-sticky">
-        <ul class="nav flex-column">
+      {% block document %}
+  {% verbatim %}
+            
+    <div class="col-md-1.7">
+      <select onchange="foo()" class="form-select" id="type_case_select" v-model="selected">
+        <option v-for="item in case_types" :value="item.id" :key="item.id">
+          {{ item.NameTypeCase }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select class="form-select" id="status_case_select"  v-model="select">
+        <option v-for="it in case_status" :value="it.id" :key="it.id">
+          {{ it.NameStatusCase }}
+        </option>
+      </select>
+    </div>   
+    <div class="col-md-2">
+      <input type="text" class="form-control" id="date" placeholder="Дата подачі справи" required="">
+    </div>    
+    <div class="col-md-2">
+      <input type="text" class="form-control" id="date_contract" placeholder="Дата договору" required="">
+    </div> 
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <button type="button" class="btn btn-outline-success" id="filter_button" v-on:click="filter()"> Фільтрувати </button>
+    </div>
+
+    {% endverbatim %}
+     {% endblock %}
           
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}">
-             
-              Головна сторінка
-            </a>
-          </li>
-          
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'client' %}">
-             
-             Новий  Клієнт
-            </a>
-          </li>
+    </div> 
+    <h1 class="h2">
+  {% block baza %}
+    {% verbatim %}
 
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'info_page' %}">
-             
-              Корисні ресурси
-            </a>
-          </li>
-      </div>
-    </nav>
-
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
-
-    {% block document %}
-{% verbatim %}
-           
-  <div class="col-md-1.7">
-    <select onchange="foo()" class="form-select" id="type_case_select" v-model="selected">
-      <option v-for="item in case_types" :value="item.id" :key="item.id">
-        {{ item.NameTypeCase }}
-      </option>
-    </select>
-  </div>
-
-
-  <div class="col-md-3">
-    <select class="form-select" id="status_case_select"  v-model="select">
-      <option v-for="it in case_status" :value="it.id" :key="it.id">
-        {{ it.NameStatusCase }}
-      </option>
-    </select>
-  </div>
+  <h6>
+  <div class="table-responsive" id="contact_new">
   
-  <div class="col-md-2">
-    <input type="text" class="form-control" id="date" placeholder="Дата подачі справи" required="">
-  </div>
-  
-  <div class="col-md-2">
-    <input type="text" class="form-control" id="date_contract" placeholder="Дата договору" required="">
-  </div> 
+    <table class="table table-striped" >
 
-  <div class="btn-toolbar mb-2 mb-md-0">
-    <button type="button" class="btn btn-outline-success" id="filter_button" v-on:click="filter()"> Фільтрувати </button>
+      <tr>
+        <th scope="col">ПІБ Клієнта</th>
+        <th scope="col">Номер договору</th>
+        <th scope="col">Тип справи</th>
+        <th scope="col">Статус справи</th>
+        <th scope="col">Дата подачі справи</th>
+        <th scope="col">Дата складання договору</th>
+        <th scope="col">Документи по справі</th>
+        <th scope="col"></th>   
+      </tr>
+      <tbody>
+          <tr v-for="el in Client"  :value="el.id" :key="el.id">
+            <td> {{ el.name_client }} </td>
+            <td>{{ el.contract_number }}</td> 
+            <td>{{ el.type_case }}</td>
+            <td>{{ el.status_case }}</td>
+            <td>{{ el.date }}</td>
+            <td>{{ el.date_contract }}</td>
+            <td>  
+              <div v-if="el.documents_case">
+               
+              <a v-bind:href=" el.documents_case " download=""> 
+                <button class="btn btn-outline-dark">  Документи </button>
+              </a>
+              </div>
+              <div v-else>
+                Документи відсутні
+              </div>
+            </td>         
+            <td>
+              <a v-bind:href=  "el.id+'/update'"  class="link-dark"  name="el.name_client">
+                <div class="update">
+                  <i class="fa-sharp fa-solid fa-pen" ></i> 
+                </div>
+              </a> 
+              <div class="delete">
+                <form id="delete_form" v-bind:action="'client/'+el.id" method="delete"></form>
+                <div class="link-dark" :id="'delete_button_' + el.id" @click="delete_user(el.name_client, el.id)"> 
+                  <i class="fa-solid fa-trash" > </i>
+                </div>
+              </div>
+              </div>
+             
+                </div>
+              </div>      
+            </td>
+          </tr>     
+        </tbody>
+    </table>
   </div>
 
   {% endverbatim %}
-{% endblock %}
-        
-  </div> 
-  <h1 class="h2">
-{% block baza %}
-  {% verbatim %}
+  <script src="static/js/app.js"></script>
+    {% endblock %}
+      </main>
+    </div>
+  </div>   
+  </h1>
 
-<h6>
-<div class="table-responsive" id="contact_new">
- 
-  <table class="table table-striped" >
 
-    <tr>
-      <th scope="col">ПІБ Клієнта</th>
-      <th scope="col">Номер договору</th>
-      <th scope="col">Тип справи</th>
-      <th scope="col">Статус справи</th>
-      <th scope="col">Дата подачі справи</th>
-      <th scope="col">Дата складання договору</th>
-      <th scope="col">Документи по справі</th>
-      <th scope="col"></th>
-      
-    </tr>
-
-      <tbody>
-        <tr v-for="el in Client"  :value="el.id" :key="el.id">
-          <td> {{ el.name_client }} </td>
-          <td>{{ el.contract_number }}</td> 
-          <td>{{ el.type_case }}</td>
-          <td>{{ el.status_case }}</td>
-          <td>{{ el.date }}</td>
-          <td>{{ el.date_contract }}</td>
-
-          <td>  
-            <a v-bind:href=" el.documents_case " download=""> 
-              <button class="btn btn-outline-dark">  Документи </button>
-            </a>
-          </td>
-          
-          <td>
-            <a v-bind:href=  "el.id+'/update'"  class="link-dark"  name="el.name_client">
-              <div class="update">
-                <i class="fa-sharp fa-solid fa-pen" ></i> 
-              </div>
-            </a> 
-
-            <div class="delete">
-              <form id="delete_form" v-bind:action="'client/'+el.id" method="delete"></form>
-              <div class="link-dark" :id="'delete_button_' + el.id" @click="delete_user(el.name_client, el.id)"> 
-                <i class="fa-solid fa-trash" > </i>
-              </div>
-            </div>
-          </td>
-        </tr>    
-        
-      </tbody>
-  </table>
-</div>
-
-{% endverbatim %}
-<script src="static/js/app.js"></script>
-  {% endblock %}
-    </main>
-  </div>
-</div>   
-</h1>
-{% endif %}
-
-</body>
+  </body>
 </html>

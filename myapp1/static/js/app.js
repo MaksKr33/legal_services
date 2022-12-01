@@ -12,8 +12,8 @@ var user_list = new Vue({
         }) 
     },
     methods: {
-      delete_user: function(user_name, user_id) {
-        if (confirm("Ви хочете видалити клієнта " + user_name )) {
+      delete_user: function( user_name, user_id, ) { 
+        if (confirm("Ви хочете видалити клієнта " + user_name )){
           axios.get('client/' + user_id).then( function(response) {
             location.reload();
           })

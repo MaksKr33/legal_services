@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+from django.urls  import reverse_lazy
 from pathlib import Path
 import os
 
@@ -131,18 +131,22 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
     ),
+
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
     ),
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-       
-        'rest_framework.authentication.BasicAuthentication'
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [  
+        'rest_framework.authentication.BasicAuthentication'],
+
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    # 'PAGE_SIZE': 2   
     #     # 'rest_framework.authentication.SessionAuthentication',
     # ] ,
     
     # 'DEFAULT_PERMISSION_CLASSES': [
     #     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    
 }
 
 
@@ -150,5 +154,9 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_URL = reverse_lazy('login')
+
 
 

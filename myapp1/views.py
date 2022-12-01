@@ -9,17 +9,21 @@ from .serializers import OrderSeriaLizer, StatusCaseSeriaLizer, TypeCaseSeriaLiz
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django.urls import reverse_lazy
-# from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-  
+from rest_framework.pagination import PageNumberPagination  
 
-
+@login_required
 def base(request):
     return render(request,'myapp1/base.html')
 
+@login_required
 def informations(request):
     return render(request,'myapp1/informations.html')  
 
+@login_required
 def new_client(request):
     error = ''
     if request.method == 'POST':
@@ -46,31 +50,39 @@ class UpdateClients(UpdateView):
 class LoginForm(LoginView):
     form_class = LoginUserForm
     template_name = 'myapp1/Login.html'
-
+     
 
     def get_success_url(self) :
-        return reverse_lazy('home')
-    
+        return reverse_lazy ('home')
     
 def logout_user(request):
     logout (request)
     return redirect('login') 
 
+# class ApiListPaginations(PageNumberPagination):
+#     page_size = 1
+#     page_size_query_param = 'page_size'
+#     max_page_size = 10000
+    
 
-class OrederViews(ModelViewSet):
-   
+class OrederViews(ModelViewSet, LoginRequiredMixin):
     queryset = Baza_client.objects.all()
+
     serializer_class = OrderSeriaLizer
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
+    # pagination_class = ApiListPaginations
     filter_backends= [DjangoFilterBackend, OrderingFilter , SearchFilter]
     filterset_fields = ['type_case', 'date', 'status_case', 'date_contract']
     ordering_fields = ['name_client', 'contract_number']
     search_fields = ['name_client', 'contract_number'] 
+    
+
 
     def destroy (self, request, *args, **kwargs):
         client_del = self.get_object()
         client_del.delete()
-        return Response({'messsage' : "Клієнт успішно видалений"})
+        return  redirect('home')
+        
 
 class TypeViews(ModelViewSet):
     queryset = TypeCase.objects.all()
