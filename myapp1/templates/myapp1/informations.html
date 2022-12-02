@@ -1,112 +1,124 @@
 {% extends 'myapp1/base.html' %}
+
+{% load static %}
+
+
 {% block menu %}
 {% endblock %}
 
 {% block document %} 
-    
 {% endblock %}
 
 {% block baza %} 
+<link rel="stylesheet" type="text/css" href= "{% static 'filecss/css/effect_buttons.css'%}"/>
 <script src="https://kit.fontawesome.com/281c808ed5.js" crossorigin="anonymous"></script>
 <body>
-    <h3 >
-    <div class="block" > <font face="Monotype Corsiva, Arial"> Реєстр судових рішень   ------------> 
-       
-        <a href="https://reyestr.court.gov.ua/" class="link-dark"  name="1">  
-            <i class="fa-regular fa-folder-open"></i>
-        </a>   
-    </div>  
-    
-    <div class="block2"> Оплата судового збору <span>
-        <a href="https://court.gov.ua/affairs/sudytax/" class="link-dark"  name="2"> 
-            <i class="fa-solid fa-money-bill-1-wave"></i>
-        </a> </span>
-     </div>
-    
-    <div class="block3">Електронний суд ------------------->
-        <a href= "https://id.court.gov.ua/" class="link-dark"  name="3"> 
-            <i class="fa-solid fa-landmark"></i>
-        </a> 
-    </div>
-    <div class="block2">Cтадія розгляду справи-------------->
-        <a href= "https://court.gov.ua/fair/" class="link-dark"  name="4">  
-            <i class="fa-solid fa-list"></i>
-        </a> 
-    </div>
-    <div class="block3">Правила пошуку судових рішень->
-        <a href="https://malynevskyi.com/reyestr-sudovyh-rishen/" class="link-dark"  name="5">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </a> 
-    </div>
-    <div class="block2">Судові засідання онлайн------------>
-        <a href="https://vkz.court.gov.ua/" class="link-dark"  name="6">  
-            <i class="fa-solid fa-school-circle-check"></i>
-        </a> 
-    </div>
-
-    <div class="block3">Кабінет адвоката ----------------->
-        <a href="https://unba.org.ua/" class="link-dark"  name="7">  
-            <i class="fa-solid fa-user-tie"></i>
-        </a> 
-    </div>
-
-    <div class="block2">Цифровий підпис---------------------->
-        <a href="https://sign.diia.gov.ua/" class="link-dark"  name="8">  
-            <i class="fa-sharp fa-solid fa-pen"></i>
-        </a> 
-    </div>
-    <div class="block3">Семінари для адвокатів---------->
-        <a href="https://cpd.hsa.org.ua/signin" class="link-dark"  name="9">  
-            <i class="fa-sharp fa-solid fa-people-line"></i>
-        </a> 
-    </div>
-
-    <div class="block2">Законодавство України------------->
-        <a href="https://zakon.rada.gov.ua/laws/main/index" class="link-dark"  name="10">  
+    <div class="buttons"> 
+        <a class="link_button" href="https://zakon.rada.gov.ua/laws/main/index">Законодавство України
             <i class="fa-sharp fa-solid fa-scale-unbalanced"></i>
-        </a> 
-    </div>
-
-    <div class="block3">Реєстр виконавчих проваджень->
-        <a href="https://asvpweb.minjust.gov.ua/#/search-debtors"  class="link-dark"  name="11">  
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <a class="link_button" href="https://unba.org.ua/">Кабінет адвоката 
+            <i class="fa-solid fa-user-tie"></i>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <a class="link_button" href="https://reyestr.court.gov.ua/">Реєстр судових рішень
+            <i class="fa-regular fa-folder-open"></i>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <a class="link_button" href="https://id.court.gov.ua/">Електронний суд
+            <i class="fa-solid fa-landmark"></i>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <a class="link_button" href="https://cpd.hsa.org.ua/signin">Семінари для адвокатів
+            <i class="fa-sharp fa-solid fa-people-line"></i>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <a class="link_button" href="https://asvpweb.minjust.gov.ua/#/search-debtors">Реєстр виконавчих проваджень
             <i class="fa-solid fa-layer-group"></i>
-        </a> 
-    </div>
-    
-    <div class="block2">Обтяження рухомого майна------->
-        <a href="https://orm.minjust.gov.ua/#/" class="link-dark"  name="11">  
-            <i class="fa-solid fa-file-circle-xmark"></i>
-        </a> 
-    </div>
-    
-    <div class="block3">Реєстр нерухомого майна-------->
-        <a href="https://online.minjust.gov.ua/login"  class="link-dark"  name="11">  
-            <i class="fa-solid fa-chart-bar"></i>
-        </a> 
-    </div>
-    
-    <div class="block2">Реєстр транспортних засобів----->
-        <a href="https://igov.gov.ua/service/1397/general" class="link-dark"  name="11">  
-            <i class="fa-solid fa-car-side"></i>
-        </a> 
-    </div>
-    <div class="block3">Реєстр юридичних осіб (ЄДР)-->
-        <a href="https://usr.minjust.gov.ua/content/free-search"  class="link-dark"  name="11">  
-            <i class="fa-solid fa-users"></i>
-        </a> 
-    </div>
-    
-    <div class="block2">Перевірка нотаріальних бланків-->
-        <a href="https://rnb.nais.gov.ua/" class="link-dark"  name="11">  
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <a class="link_button" href="https://vkz.court.gov.ua/">Судові засідання онлайн
+            <i class="fa-solid fa-school-circle-check"></i>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <a class="link_button" href="https://rnb.nais.gov.ua/">Перевірка нотаріальних бланків
             <i class="fa-solid fa-file-signature"></i>
-        </a> 
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <a class="link_button" href="https://online.minjust.gov.ua/login">Реєстр нерухомого майна
+            <i class="fa-solid fa-chart-bar"></i>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <a class="link_button" href="https://court.gov.ua/fair/">Cтадія розгляду справи
+            <i class="fa-solid fa-list"></i>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <a class="link_button" href="https://sign.diia.gov.ua/">Цифровий підпис
+            <i class="fa-sharp fa-solid fa-pen"></i>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <a class="link_button" href="https://usr.minjust.gov.ua/content/free-search">Реєстр юридичних осіб (ЄДР)
+            <i class="fa-solid fa-users"></i>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>  
+        <a class="link_button" href="https://court.gov.ua/affairs/sudytax/">Оплата судового збору
+            <i class="fa-solid fa-money-bill-1-wave"></i>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <a class="link_button" href="https://orm.minjust.gov.ua/#/">Обтяження рухомого майна
+            <i class="fa-solid fa-file-circle-xmark"></i>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <a class="link_button" href="https://igov.gov.ua/service/1397/general">Реєстр транспортних засобів
+            <i class="fa-solid fa-car-side"></i>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>       
     </div>
-    </font>
-</h3>
-</body>            
-
- 
-          {% endblock %}
-
- 
-      
+</body> 
+{% endblock %}

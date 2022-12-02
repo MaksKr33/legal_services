@@ -21,6 +21,4 @@ urlpatterns = [
         path('typecase/<int:pk>', TypeViews.as_view({'get': 'destro'}), name='delete' )
        ]
 
-
-
 urlpatterns+=router.urls

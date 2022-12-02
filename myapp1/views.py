@@ -25,6 +25,8 @@ def informations(request):
 
 @login_required
 def new_client(request):
+    """Function create and store a new customer in the database """
+   
     error = ''
     if request.method == 'POST':
         form = Baza_client_Form(request.POST, request.FILES)
@@ -42,6 +44,7 @@ def new_client(request):
     
     
 class UpdateClients(UpdateView):
+    """ Class redact customer data"""
     model= Baza_client
     template_name = 'myapp1/new_client.html'
     form_class = Baza_client_Form
@@ -66,17 +69,15 @@ def logout_user(request):
     
 
 class OrederViews(ModelViewSet, LoginRequiredMixin):
+    """This class r"""
     queryset = Baza_client.objects.all()
-
     serializer_class = OrderSeriaLizer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     # pagination_class = ApiListPaginations
     filter_backends= [DjangoFilterBackend, OrderingFilter , SearchFilter]
     filterset_fields = ['type_case', 'date', 'status_case', 'date_contract']
     ordering_fields = ['name_client', 'contract_number']
     search_fields = ['name_client', 'contract_number'] 
-    
-
 
     def destroy (self, request, *args, **kwargs):
         client_del = self.get_object()
