@@ -16,8 +16,6 @@
 <div class="new_client">
 <div class="someDiv">
  <form method="post" enctype="multipart/form-data">
-     <!-- <div class="form-group" id="new_client" v-model="form in Client"  >
-     -->
         {% csrf_token %}
         {{ form.name_client }}<br >
         {{ form.contract_number }}<br>
@@ -25,7 +23,8 @@
         {{ form.type_case }}<br>
         {{ form.date }}<br>
         {{ form.status_case }}<br>
-        {{ form.documents_case }}<br>
+        {{ form.documents_case }} <br>
+        
         <button type="submit" class="btn btn-success"> Зареєструвати</button><br>  
     </div>
         <div id="myModal" class="modal fade">

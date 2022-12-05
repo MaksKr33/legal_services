@@ -1,3 +1,4 @@
+from django.urls import reverse_lazy
 from django.db import models
 
 class Baza_client(models.Model):
@@ -15,7 +16,7 @@ class Baza_client(models.Model):
         return self.name_client
 
     def get_absolute_url(self):
-        return f'/contact'
+        return reverse_lazy('home')
 
 class TypeCase(models.Model):
     NameTypeCase = models.CharField(max_length = 100)

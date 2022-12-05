@@ -5,7 +5,7 @@ from django.forms.widgets import TextInput,  NumberInput, DateInput, Select, Fil
  
 
 class Baza_client_Form (forms.ModelForm):
-      
+       'Create a form for adding and editing client data'
        def __init__(self, *args, **kwargs):
               super().__init__(*args, **kwargs)
               self.fields['type_case'].empty_label = "Тип справи"
@@ -45,5 +45,6 @@ class Baza_client_Form (forms.ModelForm):
 
 
 class LoginUserForm(AuthenticationForm):
+       'Change the standard authorization form'
        username = forms.CharField(label= 'Логін', widget= forms.TextInput (attrs= {'class':  'form-control' }))
        password = forms.CharField(label= 'Пароль', widget= forms.PasswordInput (attrs= {'class': 'form-control' }))

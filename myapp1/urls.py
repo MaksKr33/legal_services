@@ -1,5 +1,3 @@
-
-
 from django.urls import path
 from myapp1.views import OrederViews, TypeViews, StatusViews, UpdateClients, LoginForm, TypeViews
 from myapp1.views import  base, informations, new_client, logout_user
@@ -18,7 +16,7 @@ urlpatterns = [
         path('logout', logout_user , name= 'logout'),
         path('<int:pk>/update/', UpdateClients.as_view(), name= 'update_client'),
         path('client/<int:pk>', OrederViews.as_view({'get': 'destroy'}), name='delete' ),
-        path('typecase/<int:pk>', TypeViews.as_view({'get': 'destro'}), name='delete' )
+      
        ]
 
 urlpatterns+=router.urls

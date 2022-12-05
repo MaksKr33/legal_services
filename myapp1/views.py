@@ -10,9 +10,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination  
 
 @login_required
@@ -21,11 +19,11 @@ def base(request):
 
 @login_required
 def informations(request):
-    return render(request,'myapp1/informations.html')  
+    return render(request,'myapp1/web_resources.html')  
 
 @login_required
 def new_client(request):
-    """Function create and store a new customer in the database """
+    "Function create and store a new customer in the database "
    
     error = ''
     if request.method == 'POST':
@@ -44,32 +42,37 @@ def new_client(request):
     
     
 class UpdateClients(UpdateView):
-    """ Class redact customer data"""
+    " Class redact customer data "
     model= Baza_client
     template_name = 'myapp1/new_client.html'
     form_class = Baza_client_Form
-
+    
         
 class LoginForm(LoginView):
+    'User authorization'
     form_class = LoginUserForm
     template_name = 'myapp1/Login.html'
      
-
-    def get_success_url(self) :
+    def get_success_url(self):
         return reverse_lazy ('home')
     
 def logout_user(request):
+    'User exit'
     logout (request)
     return redirect('login') 
 
 # class ApiListPaginations(PageNumberPagination):
-#     page_size = 1
+#     page_size = 2
 #     page_size_query_param = 'page_size'
 #     max_page_size = 10000
     
 
-class OrederViews(ModelViewSet, LoginRequiredMixin):
-    """This class r"""
+class OrederViews(ModelViewSet):
+    """ This class receives data in JSON format.
+    Makes filtering by 4 fields: case type, case status, case submission date, contract date.
+    Search by 2 fields: client name, contract number.
+    Has the function of deleting the client """
+    
     queryset = Baza_client.objects.all()
     serializer_class = OrderSeriaLizer
     # permission_classes = [IsAuthenticated]
@@ -80,6 +83,7 @@ class OrederViews(ModelViewSet, LoginRequiredMixin):
     search_fields = ['name_client', 'contract_number'] 
 
     def destroy (self, request, *args, **kwargs):
+        # complete deletion of client data
         client_del = self.get_object()
         client_del.delete()
         return  redirect('home')
@@ -89,10 +93,6 @@ class TypeViews(ModelViewSet):
     queryset = TypeCase.objects.all()
     serializer_class =  TypeCaseSeriaLizer
 
-    def destro (self, request, *args, **kwargs):
-        client_del = self.get_object()
-        client_del.delete()
-        return Response({'messsage' : "Clean"})
 
 class StatusViews (ModelViewSet):
     queryset = StatusCase.objects.all()

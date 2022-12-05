@@ -114,24 +114,9 @@ const btnFilterDate = document.getElementById('filter_button')
   btnFilterDateContract.click()
   btnFilterDateContract.addEventListener('click')};
  
-  const btnFilterTypeCase = document.getElementById('filter_button')
-  function foo(){
-    btnFilterTypeCase.click()
-    btnFilterTypeCase.addEventListener('click')};
+  // const btnFilterTypeCase = document.getElementById('filter_button')
+  // document.querySelector("type_case_select").selected = function foo(){
+  //   btnFilterTypeCase.click()
+  //   btnFilterTypeCase.addEventListener('click')};
   
 
-    $(function() {  
-      $('.btn-6')
-        .on('mouseenter', function(e) {
-          var parentOffset = $(this).offset(),
-              relX = e.pageX - parentOffset.left,
-              relY = e.pageY - parentOffset.top;
-          $(this).find('span').css({top:relY, left:relX})
-        })
-        .on('mouseout', function(e) {
-          var parentOffset = $(this).offset(),
-              relX = e.pageX - parentOffset.left,
-              relY = e.pageY - parentOffset.top;
-          $(this).find('span').css({top:relY, left:relX})
-        });
-    });

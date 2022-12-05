@@ -1,6 +1,6 @@
+/*  styles for the template 'list_clients.html' */
 
 .user1{ font-family: "verdana";}
-
 
 .update { transform: scale(.7,  .7); }
 .update:hover{transform: scale(1.5);}
@@ -8,9 +8,12 @@
 .delete { transform: scale(.7,  .7); }
 .delete:hover{transform: scale(1.5);}
 
-.nav-link {transform: scale(1,  1);}
+.nav-link {
+    font-weight:500;
+    transform: scale(1,  1);}
+
 .nav-link:hover{transform: scale(1.2);}
-/* */
+
 .container{
     width: 1200px;
     margin: 0 auto;
@@ -20,6 +23,8 @@
     top: 10%; 
     left: 35%;  
 }
+
+/*  styles for the template 'Login.html' */
 .avtorization{ 
     border: 3px solid black; 
     width: 470px; 
@@ -29,6 +34,7 @@
     border-radius: 25px
  }
 
+/*  styles for the template 'new_client.html' */
 .new_client{
     width: 1200px;
     margin: 0 auto;
