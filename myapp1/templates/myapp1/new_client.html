@@ -14,8 +14,8 @@
 
 
 <div class="new_client">
-<div class="someDiv">
- <form method="post" enctype="multipart/form-data">
+    <div class="someDiv">
+       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.name_client }}<br >
         {{ form.contract_number }}<br>
@@ -33,15 +33,16 @@
                     <div class="modal-header"><button class="close" type="button" data-dismiss="modal"></button>
                         <h4 class="modal-title">{{ error }}</h4>
                     </div>
-                    <div class="modal-body">Текст уведомления</div>
+                       <div class="modal-body">Текст уведомления</div>
                     <div class="modal-footer">
                         <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
                     </div>
-                    </div>
-                </div></div>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
+</div>
+
 
 
 
