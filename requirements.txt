@@ -1,0 +1,5 @@
+Django==3.2.15
+django-core==1.4.1
+django-filter==22.1
+djangorestframework==3.14.0
+attrs==22.1.0

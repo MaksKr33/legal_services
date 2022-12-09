@@ -1,4 +1,4 @@
-from django.views.generic import UpdateView, CreateView
+from django.views.generic import UpdateView
 from django.contrib.auth import logout,  authenticate
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
@@ -10,8 +10,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.pagination import PageNumberPagination  
+
 
 @login_required
 def base(request):
@@ -61,11 +60,6 @@ def logout_user(request):
     logout (request)
     return redirect('login') 
 
-# class ApiListPaginations(PageNumberPagination):
-#     page_size = 2
-#     page_size_query_param = 'page_size'
-#     max_page_size = 10000
-    
 
 class OrederViews(ModelViewSet):
     """ This class receives data in JSON format.
@@ -75,8 +69,6 @@ class OrederViews(ModelViewSet):
     
     queryset = Baza_client.objects.all()
     serializer_class = OrderSeriaLizer
-    # permission_classes = [IsAuthenticated]
-    # pagination_class = ApiListPaginations
     filter_backends= [DjangoFilterBackend, OrderingFilter , SearchFilter]
     filterset_fields = ['type_case', 'date', 'status_case', 'date_contract']
     ordering_fields = ['name_client', 'contract_number']
