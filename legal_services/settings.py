@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-s0&-0=70t=x0xmaq-_*1t=2k4+3birb8ect+8ous)&pe(+9j%3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['law.samaranin.dev', 'www.law.samaranin.dev']
+ALLOWED_HOSTS = ['law.samaranin.dev', 'www.law.samaranin.dev', '127.0.0.1']
 
 
 # Application definition
